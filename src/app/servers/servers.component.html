@@ -1,0 +1,51 @@
+<label for="">Server Name</label>
+<!-- <input 
+    type="text"
+    class="form-control" 
+    (input)="onUpdateServerName($event)"> -->
+    <br>
+<input 
+    type="text"
+    class="form-control" 
+    [(ngModel)] = "serverName">
+    <br>
+<!-- <p>{{ serverName }}</p><br> -->
+<button class="btn btn-primary" 
+[disabled]="!allowNewServer" 
+(click)="onServerCreate()">
+    Add Server</button><br><br>
+<!-- <p [innerText]="allowNewServer"></p> -->
+<!-- <p> {{ serverCreationStatus }} </p> -->
+<p *ngIf="serverCreated">Server was created, server name is {{ serverName }}</p>
+<app-server *ngFor = "let server of servers"></app-server>
+<br><hr><br>
+<label for="">User Name</label>
+<input 
+    type="text" 
+    class="form-control"
+    [(ngModel)]="userName"><br>
+<p>{{ userName }}</p><br>
+<button class="btn btn-secondary" [disabled]="userName === ''" (click)= "userName= ''">Reset User</button>
+<br>
+<hr>
+<!-- <button class="btn btn-success" (click)="showSecret = !showSecret">Display Details</button> -->
+<button class="btn btn-success" (click)="numOrderList()">Display Details</button>
+<p *ngIf="showSecret">Secret Password = tuna</p>
+<div 
+    *ngFor = "let num of numberOrder; let i = index"
+    [ngStyle] = "{backgroundColor: i >= 4? 'blue' : 'white'}"
+    [ngClass] = "{ 'white-text': i >= 4 }"
+    >{{ num }}</div><br>
+<hr>
+
+<div class="row">
+    <div class="col-lg-10">
+        <input type="text" class="form-control" [(ngModel)] = "inputItem">
+    </div>
+    <div class="col-lg-2">
+        <button class="btn btn-secondary" (click) = "onAddedItems()">Add Item</button>
+    </div>
+    <div class="col-lg-12">
+        <div *ngFor = "let itemName of itemsName; let i = index">{{ i+2 }}. {{ itemName }}</div>
+    </div>
+</div>
